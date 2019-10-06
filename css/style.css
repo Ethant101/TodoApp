@@ -1,0 +1,44 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%; }
+  body .container .navbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background-color: red;
+    font-size: 30px; }
+    body .container .navbar .navleft {
+      margin-bottom: 10px; }
+    body .container .navbar .navright {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: row; }
+      body .container .navbar .navright .themes {
+        margin: 0 20px; }
+  body .container .content {
+    height: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; }
+    body .container .content #listNav {
+      width: 30%;
+      height: 100%;
+      background-color: orange;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; }
+      body .container .content #listNav #addNew {
+        height: 40px;
+        width: 100%;
+        font-size: 20px;
+        border-bottom: 2px dashed #2a2a2a;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+    body .container .content #todoContainer {
+      width: 70%;
+      background-color: green; }
