@@ -7,35 +7,54 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="js/main.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- <script src="js/main.js" defer></script>-->
+    <script src="js/test.js" defer></script>
 </head>
 <body>
     <div class="container">
         <div class="navbar">
             <div class="navleft">
-                <img src="#" alt="logo.png"> U-do app
+                <i class="fas fa-pen-square"></i>U-do app
             </div>
             <div class="navright">
-                <div class="themes">Themes</div>
                 <i class="fas fa-user-circle"></i> <!--User Pic Icon -->
+                <div class="themes">Themes
+                    <div class="hoverToggle">
+                        <div id="red" class="themeball" onclick="redTheme()"></div>
+                        <div id="blue" class="themeball" onclick="blueTheme()"></div>
+                        <div id="grey" class="themeball" onclick="greyTheme()"></div>
+                        <div id="green" class="themeball" onclick="greenTheme()"></div>
+                        <div id="purple" class="themeball" onclick="purpleTheme()"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="content">
             <div id="listNav">
                 <div id="addNew">
-                    <i class="fas fa-plus-circle"></i>Add New
+                    <button onclick="newModal()"><i class="fas fa-plus-circle"></i>Add New</button>
                 </div>
-                <div id="listItem">
-                    mtec
-                    <i class="fas fa-play"></i>
+             <!--   <div class="listItem"> list items example
+                    <div id="listItemTitle" contenteditable="true">mtec</div>
                 </div>
+                -->
             </div>
             <div id="todoContainer">
-                <div id="todoTitle"><h1>mtec</h1></div>
-                <div id="todoContent"></div>
+                <div id="modal">
+                    <input id="modalAddNew" type="text"  placeholder="To-Do Name">
+                    <button class="submit" type="submit" onclick="addNewItem(event);newModal();">Create</button>
+                </div>
+                <div id="todoTitle" contenteditable="true">edit me</div>
+                <div id="todoContent" contenteditable="true">
+                    <i class="far fa-circle"></i>  unchecked circle<br>
+                    <i class="far fa-check-circle"></i> checked circle<br>
+                    test
+                </div>
                 <!--  <i class="far fa-circle"></i>  unchecked circle -->
                 <!-- <i class="far fa-check-circle"></i>  Check circle -->
-
             </div>
 
         </div>

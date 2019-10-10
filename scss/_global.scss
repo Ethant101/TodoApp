@@ -1,2 +1,42 @@
 @import 'darkBlue';
 $charcoal: #2a2a2a;
+$greyish: #dadfea;
+
+.themeball {
+  margin:5px;
+}
+#red {
+  height:17px;
+  width:17px;
+  border-radius:50%;
+  background-color:red;
+  border:1px solid #990000;
+}
+#blue {
+  height:17px;
+  width:17px;
+  border-radius:50%;
+  background-color:blue;
+  border:1px solid #00009d;
+}
+#grey {
+  height:17px;
+  width:17px;
+  border-radius:50%;
+  background-color:grey;
+  border:1px solid #5b5b5b;
+}
+#green {
+  height:17px;
+  width:17px;
+  border-radius:50%;
+  background-color:green;
+  border:1px solid #006e00;
+}
+#purple {
+  height:17px;
+  width:17px;
+  border-radius:50%;
+  background-color:rebeccapurple;
+  border:1px solid #4b2b76;
+}
