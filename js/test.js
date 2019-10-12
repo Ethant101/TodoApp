@@ -1,9 +1,29 @@
+/*
+(function(){
+    if(localStorage.getItem()){
+        $("#listNav").append(section);
+    }
+})();
+*/
+// let listItem = {
+//     title:${name},
+//     content:{
+//         title:${name},
+//         list:""
+//     },
+//
+// };
+let mylists = {};
+
+
 function addNewItem(event){
     let name = $("#modalAddNew").val();
-    let section = `<div class="listItem">
+     name = `<div class="listItem">
                         <div class="listItemTitle" contenteditable="true">${name}</div>
                    </div>`;
-    $("#listNav").append(section);
+    $("#listNav").append(name);
+    //append to set item instead of overwriting (forEach)
+    //localStorage.setItem("listItem", name);
 }
 
 function newModal(){
@@ -16,3 +36,5 @@ function newModal(){
     }
 
 }
+
+//localStorage.setItem("age", "18");

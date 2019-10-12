@@ -67,4 +67,3 @@ function executecode(){
     }
     //$(listarray[0]).addClass("activeitem");
 }
-*/
