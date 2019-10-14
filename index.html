@@ -17,17 +17,17 @@
     <div class="container">
         <div class="navbar">
             <div class="navleft">
-                <i class="fas fa-pen-square"></i>U-do app
+                <i class="fas fa-pen-square" style="font-size:50px;"></i>U-do app
             </div>
             <div class="navright">
                 <i class="fas fa-user-circle"></i> <!--User Pic Icon -->
                 <div class="themes">Themes
                     <div class="hoverToggle">
-                        <div id="red" class="themeball" onclick="theme('red')"></div>
-                        <div id="blue" class="themeball" onclick="theme('blue')"></div>
-                        <div id="grey" class="themeball" onclick="theme('grey')"></div>
-                        <div id="green" class="themeball" onclick="theme('green')"></div>
-                        <div id="purple" class="themeball" onclick="theme('purple')"></div>
+                        <div id="red" class="themeball"></div>
+                        <div id="blue" class="themeball"></div>
+                        <div id="grey" class="themeball"></div>
+                        <div id="green" class="themeball"></div>
+                        <div id="purple" class="themeball"></div>
                     </div>
                 </div>
 
@@ -36,8 +36,9 @@
         <div class="content">
             <div id="listNav">
                 <div id="addNew">
-                    <button onclick="newModal()"><i class="fas fa-plus-circle"></i>Add New</button>
+                    <button id="addNewbutton" onclick="newModal()"><i class="fas fa-plus-circle"></i>Add New</button>
                 </div>
+                <div id="listContainer"></div>
              <!--   <div class="listItem"> list items example
                     <div id="listItemTitle" contenteditable="true">mtec</div>
                 </div>
@@ -45,14 +46,17 @@
             </div>
             <div id="todoContainer">
                 <div id="modal">
-                    <input id="modalAddNew" type="text"  onkeyup="addNewItem(event)" placeholder="ToDo Name">
-                    <button class="submit" type="submit" onclick="addNewItem(event);newModal();">Create</button>
+                    <input id="modalAddNew" type="text"  placeholder="ToDo Name">
+                    <button class="submit" type="submit" onclick="addNewItem(event); newModal();">Create</button>
                 </div>
                 <div id="todoTitle" contenteditable="true">edit me</div>
-                <div id="todoContent" contenteditable="true">
-                    <i class="far fa-circle"></i>  unchecked circle<br>
-                    <i class="far fa-check-circle"></i> checked circle<br>
-                    test
+                <div id="todoContent">
+                    <!-- add background image that says theres nothing here when nothings there -->
+                    <button onclick="addNewEvent()"><i class="fas fa-plus-circle"></i>New Event</button>
+                    <div class="example">
+                        <p contenteditable="true">change Me</p>
+                        <i class="fas fa-trash-alt" onclick="deleteEvent(this)"></i>
+                    </div>
                 </div>
                 <!--  <i class="far fa-circle"></i>  unchecked circle -->
                 <!-- <i class="far fa-check-circle"></i>  Check circle -->
