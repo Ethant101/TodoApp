@@ -18,18 +18,19 @@ let mylists = {};
 
 function addNewItem(event){
     let name = $("#modalAddNew").val();
+    let title = ``;
     if (name == ""){
         alert("Please enter a name");
     }
     else{
         let id = Math.random();
         todo(name);
-        todoT(name, id)
-        name = `<div class="listItem" id="${id}">
-                        <div class="listItemTitle" contenteditable="true" onkeyup="todo(this.innerText)">${name}</div>
-                   </div>`;
+        name = `<div class="listItem" id="${id}" onclick="activeByClick(this)">
+                     <div class="listItemTitle" contenteditable="true" onkeyup="todo(this.innerText)" >${name}</div>
+                </div>`;
         $("#listContainer").append(name);
-
+        let title = `<div id="todoTitle" contenteditable="true" onkeyup="todo(this.innerText, ${id})">edit me</div>`;
+        //replace current todoTitle
         $(`#${id}`).animate({
             height:'40px',
             width:'100%'
@@ -58,18 +59,40 @@ function todoT(title, id){
     $(`#${id}`).html(title);
 }
 function addNewEvent() {
-    let button = `<button onclick="addNewEvent()"><i class="fas fa-plus-circle"></i>New Event</button>`;
-    let newEvent = `<div class="event">
-                        <p contenteditable="true">change Me</p>
-                        <i class="fas fa-trash-alt"></i>
+    let id = Math.random();
+    let newEvent = `<div id="${id}"class="event">
+                        <div class="eventContain">
+                            <button><i class="far fa-circle"></i></button>
+                            <p contenteditable="true">change Me</p>
+                        </div>
+                        <i class="fas fa-trash-alt" onclick="deleteEvent(this)"></i>
                     </div>`;
     let content = [];
     content.push(newEvent);
-    $("#todoContent").html(newEvent);
+    $("#todoContentInner").append(newEvent);
+}
+function addNewSubEvent(){
+    let id = Math.random();
+    let newSub = `<div id="${id}" class="exampleSub">
+                            <div class="exContainSub">
+                                <button><i class="far fa-circle"></i></button>
+                                <p contenteditable="true">change Me</p>
+                            </div>
+                            <i class="fas fa-trash-alt" onclick="deleteEvent(this)"></i>
+                        </div>`;
+    let content = [];
+    content.push(newSub);
+    $("#todoContentInner").append(newSub);
 }
 
 function deleteEvent(el) {
+    $(el).parent().slideUp(function(){
+        $(el).parent().remove();
+    });
+}
 
+function activeByClick(el){
+    $(el).addClass("active");
 }
 
 

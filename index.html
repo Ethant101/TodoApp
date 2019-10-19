@@ -45,18 +45,17 @@
                 -->
             </div>
             <div id="todoContainer">
-                <div id="modal">
+                <div id="modal" style="display:none;">
                     <input id="modalAddNew" type="text"  placeholder="ToDo Name">
                     <button class="submit" type="submit" onclick="addNewItem(event); newModal();">Create</button>
                 </div>
-                <div id="todoTitle" contenteditable="true">edit me</div>
+                <div id="todoTitle" contenteditable="true" onkeyup="todoT(this.innerText, )">edit me</div>
                 <div id="todoContent">
+                    <div id="todoContentInner"></div>
                     <!-- add background image that says theres nothing here when nothings there -->
-                    <button onclick="addNewEvent()"><i class="fas fa-plus-circle"></i>New Event</button>
-                    <div class="example">
-                        <p contenteditable="true">change Me</p>
-                        <i class="fas fa-trash-alt" onclick="deleteEvent(this)"></i>
-                    </div>
+
+                    <button id="newEvent" onclick="addNewEvent()"><i class="fas fa-plus-circle"></i> New Event</button>
+                    <button id="newSubEvent" onclick="addNewSubEvent()"><i class="fas fa-plus-circle"></i> Sub Event</button>
                 </div>
                 <!--  <i class="far fa-circle"></i>  unchecked circle -->
                 <!-- <i class="far fa-check-circle"></i>  Check circle -->
