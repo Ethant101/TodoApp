@@ -4,10 +4,13 @@ let idcount = 0;
 $(".listbox").sortable({
     stop: function( event, ui ){executecode();}
 }); //makes it so you can drag and drop items
-function saveitem(event){
+
+
+
+function addNewItem(event){
     switch(event.which){
         case 13:
-            let myval = $("#todoinput").val();
+            let myval = $("#modalAddNew").val();
             console.log(myval);
             let tempObj = {};
             tempObj.id = idcount;
@@ -63,7 +66,7 @@ function executecode(){
     let listarray = $(".listbox").children();
     for(let i = 0; i < listaray.length; i++){
         //console.log(listarray[i]);
-        $(listarray[i]).attr("id", `litstnum${i}`);
+        $(listarray[i]).attr("id", `listnum${i}`);
     }
     //$(listarray[0]).addClass("activeitem");
 }

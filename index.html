@@ -9,12 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <!-- <script src="js/main.js" defer></script>-->
-    <script src="js/test.js" defer></script>
+    <!--<script src="js/model.js" defer></script>-->
+    <!--<script src="js/action.js" defer></script>-->
+    <script src="js/newTest.js" defer></script>
+    <!-- <script src="js/test.js" defer></script> -->
     <script src="js/themes.js" defer></script>
 </head>
 <body>
     <div class="container">
+        <div id="modal" style="display:none;">
+            <input id="modalAddNew" type="text" onkeyup="addNewItem(event)" placeholder="ToDo Name">
+        </div>
         <div class="navbar">
             <div class="navleft">
                 <i class="fas fa-pen-square" style="font-size:50px;"></i>U-do app
@@ -45,20 +50,9 @@
                 -->
             </div>
             <div id="todoContainer">
-                <div id="modal" style="display:none;">
-                    <input id="modalAddNew" type="text"  placeholder="ToDo Name">
-                    <button class="submit" type="submit" onclick="addNewItem(event); newModal();">Create</button>
-                </div>
-                <div id="todoTitle" contenteditable="true" onkeyup="todoT(this.innerText, )">edit me</div>
-                <div id="todoContent">
-                    <div id="todoContentInner"></div>
-                    <!-- add background image that says theres nothing here when nothings there -->
+                
+                <!-- Where list content goes -->
 
-                    <button id="newEvent" onclick="addNewEvent()"><i class="fas fa-plus-circle"></i> New Event</button>
-                    <button id="newSubEvent" onclick="addNewSubEvent()"><i class="fas fa-plus-circle"></i> Sub Event</button>
-                </div>
-                <!--  <i class="far fa-circle"></i>  unchecked circle -->
-                <!-- <i class="far fa-check-circle"></i>  Check circle -->
             </div>
 
         </div>
