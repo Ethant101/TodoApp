@@ -153,7 +153,9 @@ function placeContent(el, id){
 function addNewEvent(myid){
     let newEvent = `<div class="event">
                         <div class="eventContain">
-                            <button onclick="toggleCheck(this)"><i class="far fa-circle"></i></button>
+                            <button onclick="toggleCheck(this)"><label class="checkbox-label">
+            <input type="checkbox">
+            <span class="checkbox-custom circular"></span></i></button>
                             <p contenteditable="true"> <!--onkeydown="editmember(event, {myid}, {myid}, this.innerText)"-->change Me</p> <!-- on key press, update object with the whole element -->
                         </div>
                         <i class="fas fa-trash-alt" onclick="remove(this)"></i>
