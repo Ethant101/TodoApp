@@ -151,101 +151,104 @@ body {
         background-color:$white;
         z-index:0;
         overflow: auto;
-        .todoTitle {
-          height:60px;
-          width:100%;
-          margin:10px 0;
-          text-align:center;
-          border-bottom: 2px solid $charcoal;
-          font-size: 40px;
-          font-weight: bold;
-        }
-        .todoContent {
-          margin:40px 0 0 40px;
-          font-size:30px;
-          .todoContentInner{
-            .example, .event {
-              display:flex;
-              justify-content:space-between;
-              align-items:center;
-              width:100%;
-              border-bottom: 1px solid $charcoal;
-              .exContain, .eventContain{
+        .todo{
+          .todoTitle {
+            height:60px;
+            width:100%;
+            margin:10px 0;
+            text-align:center;
+            border-bottom: 2px solid $charcoal;
+            font-size: 40px;
+            font-weight: bold;
+          }
+          .todoContent {
+            margin:40px 0 0 40px;
+            font-size:30px;
+            .todoContentInner{
+              .example, .event {
                 display:flex;
+                justify-content:space-between;
                 align-items:center;
-                button {
-                  background-color:$greyish;
-                  border:none;
-                  border-radius:50%;
-                  padding:0;
-                  height:100%;
-                  font-size:20px;
-                  margin-right:10px;
+                width:100%;
+                border-bottom: 1px solid $charcoal;
+                .exContain, .eventContain{
+                  display:flex;
+                  align-items:center;
+                  button {
+                    background-color:$greyish;
+                    border:none;
+                    border-radius:50%;
+                    padding:0;
+                    height:100%;
+                    font-size:20px;
+                    margin-right:10px;
+                  }
+                  button:hover{
+                    cursor:pointer;
+                  }
                 }
-                button:hover{
+                .fa-trash-alt{
+                  margin-right:20px;
+                }
+                .fa-trash-alt:hover {
                   cursor:pointer;
                 }
               }
-              .fa-trash-alt{
-                margin-right:20px;
-              }
-              .fa-trash-alt:hover {
-                cursor:pointer;
-              }
-            }
-            .exampleSub{
-              margin-left:80px;
-              display:flex;
-              justify-content:space-between;
-              align-items:center;
-              width:80%;
-              border-bottom: 1px solid $charcoal;
-              .exContainSub{
+              .exampleSub{
+                margin-left:80px;
                 display:flex;
+                justify-content:space-between;
                 align-items:center;
-                font-size:12px;
-                button {
-                  background-color:$greyish;
-                  border:none;
-                  border-radius:50%;
-                  padding:0;
-                  height:100%;
+                width:80%;
+                border-bottom: 1px solid $charcoal;
+                .exContainSub{
+                  display:flex;
+                  align-items:center;
                   font-size:12px;
-                  margin-right:10px;
+                  button {
+                    background-color:$greyish;
+                    border:none;
+                    border-radius:50%;
+                    padding:0;
+                    height:100%;
+                    font-size:12px;
+                    margin-right:10px;
+                  }
+                  button:hover{
+                    cursor:pointer;
+                  }
                 }
-                button:hover{
+                .fa-trash-alt{
+                  margin-right:20px;
+                }
+                .fa-trash-alt:hover {
                   cursor:pointer;
                 }
               }
-              .fa-trash-alt{
-                margin-right:20px;
-              }
-              .fa-trash-alt:hover {
-                cursor:pointer;
-              }
+            }
+            .newEvent {
+              margin-top:20px;
+              padding:10px;
+              font-size:20px;
+              border:none;
+              background-color:$green;
+            }
+            .newEvent:hover{
+              cursor:pointer;
+            }
+            .newSubEvent {
+              margin-top:20px;
+              padding:10px;
+              font-size:20px;
+              border:none;
+              background-color: $brightBlue;
+            }
+            .newSubEvent:hover{
+              cursor:pointer;
             }
           }
-          .newEvent {
-            margin-top:20px;
-            padding:10px;
-            font-size:20px;
-            border:none;
-            background-color:$green;
-          }
-          .newEvent:hover{
-            cursor:pointer;
-          }
-          .newSubEvent {
-            margin-top:20px;
-            padding:10px;
-            font-size:20px;
-            border:none;
-            background-color: $brightBlue;
-          }
-          .newSubEvent:hover{
-            cursor:pointer;
-          }
         }
+
       }
     }
   }

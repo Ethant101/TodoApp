@@ -114,7 +114,8 @@ function activeToggleByClick(el, id){
 }
 function activeTodo(el){
     $("#todoContainer").children().removeClass("activeTodo");
-    $("#todoContainer").children().hide();
+
+
     $("#todoContainer:first-child").show();
     $(el).addClass("activeTodo").show();
 }

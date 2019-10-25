@@ -47,9 +47,10 @@ function addNewItem(event){
                 tempObj.listname = myval;
                 tempObj.listcontent = {};
                 tempObj.listcontent.title = myval;
+                tempObj.listcontent.id = Math.random().toString(36).replace(/[^a-z]+/g, '');
                 tempObj.listcontent.content = [];
-                tempObj.listcontent.buttons = [`<button class="newEvent" onclick="addNewEvent(self)"><i class="fas fa-plus-circle"></i> New Event</button>`,
-                                               `<button class="newSubEvent" onclick="addNewSubEvent(self)"><i class="fas fa-plus-circle"></i> Sub Event</button>`];
+                //tempObj.listcontent.buttons = [`<button class="newEvent" onclick="addNewEvent(self)"><i class="fas fa-plus-circle"></i> New Event</button>`,
+                                           //    `<button class="newSubEvent" onclick="addNewSubEvent(self)"><i class="fas fa-plus-circle"></i> Sub Event</button>`];
                 tempObj.listcontent.setactive = "newActive"; // "oldActive" "notActive"
                 biglist.push(tempObj);
                 printmypage();
@@ -65,54 +66,51 @@ function addNewItem(event){
 }
 function printmypage(){
     $("#listContainer").html("");
-    $("#todoContainer").html("");
+    $("#todoContainer").children().removeClass("activeContent");
+    $("#todoContainer").children().hide();
     for(let i = 0; i < biglist.length; i++){ //for everything in the object do these things
-        var id = biglist[i];
-        console.log(id);
-        $("#listContainer").append(`<div class="listItem" onclick="setActiveList(this, ${biglist[i].id})">
-                                         <div class="listItemTitle" contenteditable="true" onkeyup="titleChange(this.innerText)" >${biglist[i].listname}</div>
+        var identification = biglist[i];
+        $("#listContainer").append(`<div class="listItem" onclick="setActiveList(this, ${biglist[i].id}, ${biglist[i].listcontent.id})">
+                                         <div class="listItemTitle" contenteditable="true" onkeyup="titleChange(this.innerText)"> ${biglist[i].listname} </div>
                                          <i class="fas fa-trash-alt" onclick="remove(this, ${biglist[i].id})"></i>
                                     </div>`);
 
         //function that for the content object, adds todocontent with the opening of todocontentinner, then adds all our button additions, then
         //closes both dives
     }
-    $("#todoContainer").append(`<div class="todoTitle">${id.listname}</div>
+    $("#todoContainer").append(`<div class="todo" id="${identification.listcontent.id}">
+<div class="todoTitle activeContent">${identification.listname}</div>
             <div class="todoContent">
-                <div class="todoContentInner" onload="placeContent(this, ${id.listcontent.content}"></div>
-                 <button class="newEvent" onclick="addNewEvent(self)"><i class="fas fa-plus-circle"></i> New Event</button>
-                 <button class="newSubEvent" onclick="addNewSubEvent(self)"><i class="fas fa-plus-circle"></i> Sub Event</button>
-            </div>`)
+                <div class="todoContentInner" onload="placeContent(this, ${identification.listcontent.content}"></div>
+                 <button class="newEvent" onclick="addNewEvent(${identification.id})"><i class="fas fa-plus-circle"></i> New Event</button>
+            </div>
+</div>`)
     /*for(let j = 0; j < biglist[i].listcontent.content.length; j++){
     (".todoContentInner").append(biglist[i].listcontent.content[j]);
      */
 }
-let oldContent; //biglist[i].listcontent.content of old element; this will be assinged last updatePage call
-let newContent; //^ of new element   we will pass this in when we call update page
-function updatePage(oldel, newel){
-    oldContent = [];//empty oldcontent
-    $("#todocontentInner").children('div').each(function(){
-        console.log(this.html);
-        oldContent.push(this.html());
-    });
-    // $("#todoContentInner").append(function(){
-    //     for(let i = 0; i < newContent.length; i++){
-    //        return newContent[i];
-    //     }
-    // });
-    // oldContent = newContent;
-    //changes the new content to old content to be ready for a new updatePage call
-}
 
-function setActiveList(el, myid){
+
+
+function setActiveList(el, myid, contentID){
     $("#listContainer").children().removeClass("active");
-    $("#todoContainer").children().removeClass("activeTodo");
+    $("#todoContainer").children().removeClass("activeContent");
+    $("#todoContainer").children().hide();
     for(let i = 0; i < biglist.length; i++){
-        if(myid === biglist[i].id){
+        if(myid === biglist[i].id) {
             $(el).addClass("active");
+            $(contentID).addClass("activeContent");
+
             //setActiveTodo(el, myid);
-            updatePage(oldContent, biglist[i].listcontent.content);
+            //updatePage(oldContent, biglist[i].listcontent.content);
+
+            //$(".todocontentInner").children('div').each(function(){oldContent.push($(this).html)});
+
+            // $(".todocontentInner").each(function() {
+            //     oldContent.push($(this).html());
+            // });
         }
+        $(".activeContent").show();
     }
 
 }
@@ -123,7 +121,7 @@ function setActiveList(el, myid){
     myid.listcontent.setactive = "active";
 } */
 
-function remove(el, myid){
+function remove(el, myid, item){//item should be where it is in the object
     for(let i = 0; i < biglist.length; i++){
         if(myid === biglist[i].id){
             biglist.splice(i, 1)//removes parent list from object
@@ -153,33 +151,25 @@ function placeContent(el, id){
 function addNewEvent(myid){
     let newEvent = `<div class="event">
                         <div class="eventContain">
-                            <button><i class="far fa-circle"></i></button>
-                            <p contenteditable="true" onkeydown="editmember(event, ${myid}, ${myid}, this.innerText)">change Me</p> <!-- on key press, update object with the whole element -->
+                            <button onclick="toggleCheck(this)"><i class="far fa-circle"></i></button>
+                            <p contenteditable="true"> <!--onkeydown="editmember(event, {myid}, {myid}, this.innerText)"-->change Me</p> <!-- on key press, update object with the whole element -->
                         </div>
                         <i class="fas fa-trash-alt" onclick="remove(this)"></i>
                     </div>`;
     for(let i = 0; i < biglist.length; i++) {
-        if (myid === biglist[i].id) { //code isn't getting past this
+        if (myid === biglist[i].id) { //code isn't getting past this because my id doesn't = biglist
             biglist[i].listcontent.content.push(newEvent);
-            console.log(biglist[i].listcontent.content)
         }
     }
     $(".todoContentInner").append(newEvent);
 }
-function addNewSubEvent(myid){
-    let newSub = `<div class="exampleSub">
-                            <div class="exContainSub">
-                                <button><i class="far fa-circle"></i></button>
-                                <p contenteditable="true">change Me</p>
-                            </div>
-                            <i class="fas fa-trash-alt" onclick="remove(this)"></i>
-                        </div>`;
-    for(let i = 0; i < biglist.length; i++) {
-        if (myid === biglist[i].id) {
-            biglist[i].listcontent.content.push(newSub);
-        }
+function toggleCheck(el){
+    if($(el).html() == `<i class="far fa-circle">`){ // can't detect that inner html is the same
+        $(el).html('<i class=\"far fa-check-circle\"></i>');
     }
-    $(".todoContentInner").append(newSub);
+    if($(el).html() == `<i class=\"far fa-check-circle\"></i>`){
+        $(el).html('<i class=\"far fa-circle\">');
+    }
 }
 function editmember(event, listnum, memnum, name){
     switch(event.which) {
