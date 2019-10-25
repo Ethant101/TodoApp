@@ -71,25 +71,27 @@ function printmypage(){
     for(let i = 0; i < biglist.length; i++){ //for everything in the object do these things
         var identification = biglist[i];
         $("#listContainer").append(`<div class="listItem" onclick="setActiveList(this, ${biglist[i].id}, ${biglist[i].listcontent.id})">
-                                         <div class="listItemTitle" contenteditable="true" onkeyup="titleChange(this.innerText)"> ${biglist[i].listname} </div>
+                                         <div class="listItemTitle" contenteditable="true" onkeyup="titleChange(this.innerText, ${identification.listcontent.id})"> ${biglist[i].listname} </div>
                                          <i class="fas fa-trash-alt" onclick="remove(this, ${biglist[i].id})"></i>
                                     </div>`);
 
         //function that for the content object, adds todocontent with the opening of todocontentinner, then adds all our button additions, then
         //closes both dives
     }
-    $("#todoContainer").append(`<div class="todo" id="${identification.listcontent.id}">
-<div class="todoTitle activeContent">${identification.listname}</div>
+    $("#todoContainer").append(`<div class="todo activeContent" id="${identification.listcontent.id}">
+<div class="todoTitle ">${identification.listname}</div>
             <div class="todoContent">
                 <div class="todoContentInner" onload="placeContent(this, ${identification.listcontent.content}"></div>
-                 <button class="newEvent" onclick="addNewEvent(${identification.id})"><i class="fas fa-plus-circle"></i> New Event</button>
+                 <button class="newEvent" onclick="addNewEvent(${identification.listcontent.id})"><i class="fas fa-plus-circle"></i> New Event</button>
             </div>
 </div>`)
     /*for(let j = 0; j < biglist[i].listcontent.content.length; j++){
     (".todoContentInner").append(biglist[i].listcontent.content[j]);
      */
 }
-
+function titleChange(title, target){
+    $(target).find(".todoTitle").html(title);
+}
 
 
 function setActiveList(el, myid, contentID){
@@ -134,7 +136,7 @@ function remove(el, myid, item){//item should be where it is in the object
     }, 600, function(){
         //animation complete
         $(el).parent().remove();
-        printmypage();
+
     });
 }
 function executecode(){
@@ -156,12 +158,12 @@ function addNewEvent(myid){
                         </div>
                         <i class="fas fa-trash-alt" onclick="remove(this)"></i>
                     </div>`;
-    for(let i = 0; i < biglist.length; i++) {
-        if (myid === biglist[i].id) { //code isn't getting past this because my id doesn't = biglist
-            biglist[i].listcontent.content.push(newEvent);
-        }
-    }
-    $(".todoContentInner").append(newEvent);
+    // for(let i = 0; i < biglist.length; i++) {
+    //     if (myid === biglist[i].id) { //code isn't getting past this because my id doesn't = biglist
+    //         biglist[i].listcontent.content.push(newEvent);
+    //     }
+    // }
+    $(myid).find(".todoContentInner").append(newEvent);
 }
 function toggleCheck(el){
     if($(el).html() == `<i class="far fa-circle">`){ // can't detect that inner html is the same
@@ -171,7 +173,7 @@ function toggleCheck(el){
         $(el).html('<i class=\"far fa-circle\">');
     }
 }
-function editmember(event, listnum, memnum, name){
+/*function editmember(event, listnum, memnum, name){
     switch(event.which) {
         case 13: //enter key pushed
             let thename = myclubs.collection[listnum].collection[memnum].name;
@@ -179,4 +181,7 @@ function editmember(event, listnum, memnum, name){
             printPage();
             break;
     }
-}
+}*/
+
+
+//checkbox "onchange"
