@@ -1,23 +1,7 @@
-/*biglist = [
-    0: {
-        id:0,
-        listname: 'test',
-        listcontent: {
-            title: 'test',
-            content:[],
-            buttons: []
-        }
-    }
-    1: {}
-
-
-] */
-
 
 
 let biglist = [];
 let idcount = 0;
-let contentid = 0;
 
 $("#listContainer").sortable({
     stop: function( event, ui ){executecode();}
@@ -74,9 +58,6 @@ function printmypage(){
                                          <div class="listItemTitle" contenteditable="true" onkeyup="titleChange(this.innerText, ${identification.listcontent.id})"> ${biglist[i].listname} </div>
                                          <i class="fas fa-trash-alt" onclick="remove(this, ${biglist[i].id})"></i>
                                     </div>`);
-
-        //function that for the content object, adds todocontent with the opening of todocontentinner, then adds all our button additions, then
-        //closes both dives
     }
     $("#todoContainer").append(`<div class="todo activeContent" id="${identification.listcontent.id}">
 <div class="todoTitle ">${identification.listname}</div>
@@ -85,9 +66,6 @@ function printmypage(){
                  <button class="newEvent" onclick="addNewEvent(${identification.listcontent.id})"><i class="fas fa-plus-circle"></i> New Event</button>
             </div>
 </div>`)
-    /*for(let j = 0; j < biglist[i].listcontent.content.length; j++){
-    (".todoContentInner").append(biglist[i].listcontent.content[j]);
-     */
 }
 function titleChange(title, target){
     $(target).find(".todoTitle").html(title);
@@ -102,27 +80,11 @@ function setActiveList(el, myid, contentID){
         if(myid === biglist[i].id) {
             $(el).addClass("active");
             $(contentID).addClass("activeContent");
-
-            //setActiveTodo(el, myid);
-            //updatePage(oldContent, biglist[i].listcontent.content);
-
-            //$(".todocontentInner").children('div').each(function(){oldContent.push($(this).html)});
-
-            // $(".todocontentInner").each(function() {
-            //     oldContent.push($(this).html());
-            // });
         }
         $(".activeContent").show();
     }
 
 }
-/*function setActiveTodo(el, myid){
-    for(let i = 0; i < biglist.length; i++){
-        biglist[i].id.listcontent.setactive = "notActive";
-    }
-    myid.listcontent.setactive = "active";
-} */
-
 function remove(el, myid, item){//item should be where it is in the object
     for(let i = 0; i < biglist.length; i++){
         if(myid === biglist[i].id){
@@ -153,10 +115,10 @@ function placeContent(el, id){
 function addNewEvent(myid){
     let newEvent = `<div class="event">
                         <div class="eventContain">
-                            <button onclick="toggleCheck(this)"><label class="checkbox-label">
+                            <button><label class="checkbox-label">
             <input type="checkbox">
             <span class="checkbox-custom circular"></span></i></button>
-                            <p contenteditable="true"> <!--onkeydown="editmember(event, {myid}, {myid}, this.innerText)"-->change Me</p> <!-- on key press, update object with the whole element -->
+                            <p contenteditable="true">change Me</p> <!-- on key press, update object with the whole element -->
                         </div>
                         <i class="fas fa-trash-alt" onclick="remove(this)"></i>
                     </div>`;
@@ -167,23 +129,3 @@ function addNewEvent(myid){
     // }
     $(myid).find(".todoContentInner").append(newEvent);
 }
-function toggleCheck(el){
-    if($(el).html() == `<i class="far fa-circle">`){ // can't detect that inner html is the same
-        $(el).html('<i class=\"far fa-check-circle\"></i>');
-    }
-    if($(el).html() == `<i class=\"far fa-check-circle\"></i>`){
-        $(el).html('<i class=\"far fa-circle\">');
-    }
-}
-/*function editmember(event, listnum, memnum, name){
-    switch(event.which) {
-        case 13: //enter key pushed
-            let thename = myclubs.collection[listnum].collection[memnum].name;
-            thename = name;
-            printPage();
-            break;
-    }
-}*/
-
-
-//checkbox "onchange"
